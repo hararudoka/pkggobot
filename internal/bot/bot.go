@@ -1,9 +1,6 @@
 package bot
 
 import (
-	"${MODULE}"
-	"${MODULE}/internal/database"
-
 	tele "gopkg.in/telebot.v3"
 	"gopkg.in/telebot.v3/layout"
 	"gopkg.in/telebot.v3/middleware"
@@ -12,10 +9,9 @@ import (
 type Bot struct {
 	*tele.Bot
 	*layout.Layout
-	db *database.DB
 }
 
-func New(path string, boot ${PROJECT}.Bootstrap) (*Bot, error) {
+func New(path string) (*Bot, error) {
 	lt, err := layout.New(path)
 	if err != nil {
 		return nil, err
@@ -35,7 +31,6 @@ func New(path string, boot ${PROJECT}.Bootstrap) (*Bot, error) {
 	return &Bot{
 		Bot:    b,
 		Layout: lt,
-		db:     boot.DB,
 	}, nil
 }
 
@@ -47,6 +42,7 @@ func (b *Bot) Start() {
 
 	// Handlers
 	b.Handle("/start", b.onStart)
+	b.Handle(tele.OnQuery, b.onQuery)
 
 	b.Bot.Start()
 }

@@ -1,11 +1,30 @@
 settings:
   token_env: TOKEN
-  parse_mode: html
+  parse_mode: Markdown
 
 config:
 
 commands:
+  doc: doc <pkg>.[<methodOrType>[.<methodOrField>]]
 
 buttons:
+  doc: doc
 
 markups:
+  doc:
+    - [ doc ]
+
+results:
+  help:
+
+  doc:
+    type: article
+    title: '{{ .Title }}'
+    reply_markup:
+      inline_keyboard:
+        - - text: 🔗 pkg.go.dev
+            url: '{{ .URL }}'
+
+  nodoc:
+    type: article
+    title: '{{ .Title }}'

@@ -2,24 +2,12 @@ package main
 
 import (
 	"log"
-	"os"
 
-	"${MODULE}"
-	"${MODULE}/internal/bot"
-	"${MODULE}/internal/database"
+	"github.com/hararudoka/pkggobot/internal/bot"
 )
 
 func main() {
-	db, err := database.Open(os.Getenv("DB_URL"))
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	boot := ${PROJECT}.Bootstrap{
-		DB: db,
-	}
-
-	b, err := bot.New("bot.yml", boot)
+	b, err := bot.New("bot.yml")
 	if err != nil {
 		log.Fatal(err)
 	}
