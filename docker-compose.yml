@@ -1,0 +1,5 @@
+services:
+  server:
+    image: haraldka/pkggobot:latest
+    env_file:
+      - .env

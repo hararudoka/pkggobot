@@ -17,6 +17,5 @@ WORKDIR /app
 COPY --from=builder /src/bot .
 COPY --from=builder /src/bot.yml .
 COPY --from=builder /src/locales locales
-COPY --from=builder /src/sql sql
 
 ENTRYPOINT ["/app/bot"]
