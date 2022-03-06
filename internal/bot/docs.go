@@ -53,7 +53,7 @@ func (b Bot) onDoc(c tele.Context, args string) error {
 }
 
 func createDoc(str string) (title, text, url string) {
-	out, err := exec.Command("go", "doc", str).Output()
+	out, err := exec.Command("/usr/local/go/bin/go", "doc", str).Output()
 	if err != nil {
 		fmt.Println(err)
 	}
