@@ -73,6 +73,7 @@ func NewDoc(pkgName string) (Doc, error) {
 	}, nil
 }
 
+// махун пж заревьюй ету функцию. она парсит все функции из пакета который передаётся выше
 func ParseFunctions(doc *goquery.Document) []Function {
 	var fs []Function
 
