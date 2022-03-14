@@ -9,6 +9,7 @@ import (
 	tele "gopkg.in/telebot.v3"
 )
 
+// TODO: fix formatting
 func (b Bot) onDoc(c tele.Context, args string) error {
 	results := tele.Results{}
 
@@ -23,8 +24,8 @@ func (b Bot) onDoc(c tele.Context, args string) error {
 			})
 			res.SetContent(&tele.InputTextMessageContent{Text: "not found: "+title})
 
-			results = append(results, res)
 
+			results = append(results, res)
 		} else {
 			res := b.Result(c, "doc", map[string]interface{}{
 				"Title": "found: "+title,
@@ -46,11 +47,17 @@ func (b Bot) onDoc(c tele.Context, args string) error {
 		results = append(results, res)
 	}
 
+
+
+
+
 	return c.Answer(&tele.QueryResponse{
 		Results:   results,
 		CacheTime: -1,
 	})
 }
+
+
 
 func createDoc(str string) (title, text, url string) {
 	out, err := exec.Command("/usr/local/go/bin/go", "doc", str).Output()
