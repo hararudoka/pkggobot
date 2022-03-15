@@ -6,50 +6,45 @@ import (
 	"strings"
 	"unicode/utf8"
 
+	"github.com/hararudoka/pkggobot/internal/service"
 	tele "gopkg.in/telebot.v3"
 )
 
 // TODO: fix formatting
-func (b Bot) onDoc(c tele.Context, args string) error {
+func (b Bot) onDoc(c tele.Context, a string) error {
 	results := tele.Results{}
 
 	title, text, url := "", "", ""
 
-	if len(args) >= 1 {
-		title, text, url = createDoc(args)
+	args := strings.Split(a, ".")
 
-		if text == "" {
-			res := b.Result(c, "nodoc", map[string]interface{}{
-				"Title": "not found: "+title,
-			})
-			res.SetContent(&tele.InputTextMessageContent{Text: "not found: "+title})
+	if len(args) == 0 {
 
+	}
 
-			results = append(results, res)
-		} else {
-			res := b.Result(c, "doc", map[string]interface{}{
-				"Title": "found: "+title,
-				"URL":   url,
-			})
-
-			res.SetContent(&tele.InputTextMessageContent{Text: text})
-
-			results = append(results, res)
+	if true { // TODO сделать
+		if len(args) == 1 {
+			_ = doc
 		}
+
+		res := b.Result(c, "doc", map[string]interface{}{
+			"Title": "found: "+title,
+			"URL":   url,
+		})
+
+		res.SetContent(&tele.InputTextMessageContent{Text: text})
+
+		results = append(results, res)
 	} else {
 		title, text = "doc <pkg>.[<methodOrType>[.<methodOrField>]]", ""
 
 		res := b.Result(c, "nodoc", map[string]interface{}{
 			"Title": title,
 		})
-		res.SetContent(&tele.InputTextMessageContent{Text: "not found: empty arg"})
+		res.SetContent(&tele.InputTextMessageContent{Text: "not found: "}) // TODO: errors
 
 		results = append(results, res)
 	}
-
-
-
-
 
 	return c.Answer(&tele.QueryResponse{
 		Results:   results,

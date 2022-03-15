@@ -9,7 +9,7 @@ import (
 )
 
 func TestParseFunctions(t *testing.T) {
-	res, err := http.Get("https://pkg.go.dev/errors")
+	res, err := http.Get("https://pkg.go.dev/strings")
 	if err != nil {
 		panic(err)
 	}
@@ -26,7 +26,7 @@ func TestParseFunctions(t *testing.T) {
 
 	fs := ParseFunctions(doc)
 
-	fmt.Println(fs)
+	fmt.Println(fs[len(fs)-1].Signature)
 }
 
 func TestParseTypes(t *testing.T) {
@@ -47,5 +47,5 @@ func TestParseTypes(t *testing.T) {
 
 	types := ParseTypes(doc)
 
-	fmt.Println(types)
+	fmt.Println(types[0].Methods[0].Description)
 }

@@ -9,7 +9,7 @@ import (
 func (b Bot) onQuery(c tele.Context) error {
 	command, data := b.parseQuery(c.Data())
 
-	log.Println("пришёл инлайн")
+	log.Println("got inline rn")
 	switch command {
 	case "doc", "d":
 		return b.onDoc(c, data)
