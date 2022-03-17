@@ -6,7 +6,7 @@ import (
 	"github.com/hararudoka/pkggobot/internal/service"
 )
 
-func main () {
+func main () { // TODO: remove this file
 	doc, err := service.NewDoc("strings")
 	if err != nil {
 		panic(err)

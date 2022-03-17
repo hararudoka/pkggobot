@@ -13,7 +13,6 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-
 	b, err := bot.New("bot.yml")
 	if err != nil {
 		log.Fatal(err)
