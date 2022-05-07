@@ -19,7 +19,7 @@ func (b Bot) onDoc(c tele.Context, a string) error {
 		pkgName := args[0]
 		doc, err := service.NewDoc(pkgName)
 		if err != nil {
-			panic(err)
+			return err
 		}
 
 		if len(args) == 2 {

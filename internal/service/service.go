@@ -52,7 +52,7 @@ func NewDoc(pkgName string) (Doc, error) {
 		Constants: nil, // parseConstants(doc)
 		Vars:      nil, // parseVars(doc)
 		Functions: parseFunctions(page),
-		Types:     nil, //parseTypes(doc),
+		Types:     nil, // parseTypes(doc),
 	}, nil
 }
 
@@ -190,7 +190,7 @@ func parseTypes(doc *goquery.Document) []Type {
 		example := s.Find("div.Documentation-exampleDetailsBody").Find("pre.Documentation-exampleCode").Text()
 
 		// get methods
-		var meths []Function
+		var meths []Symbol
 		s.Find("div.Documentation-typeMethod").Each(func(i int, s *goquery.Selection) {
 			// get signature
 			sig := s.Find("pre").Text()
@@ -209,7 +209,7 @@ func parseTypes(doc *goquery.Document) []Type {
 			// ...
 
 			meths = append(meths, Symbol{
-				Name:        name, // TODO name
+				Name:        "name", // TODO name
 				Signature:   sig,
 				Description: desM,
 				Example:     "",
@@ -221,7 +221,7 @@ func parseTypes(doc *goquery.Document) []Type {
 
 		types = append(types, Type{
 			Symbol: Symbol{
-				Name:        name, // TODO name
+				Name:        "name", // TODO name
 				Signature:   signature,
 				Description: des,
 				Example:     example,
@@ -229,7 +229,6 @@ func parseTypes(doc *goquery.Document) []Type {
 			Methods: meths,
 			Fields:  nil,
 		})
-
 	})
 
 	return types
